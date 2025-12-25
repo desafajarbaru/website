@@ -1,0 +1,64 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { AuthProvider } from "./contexts/AuthContext"
+import { Layout } from "./components/Layout"
+import { ProtectedRoute } from "./components/ProtectedRoute"
+import { LandingPage } from "./pages/LandingPage"
+import { Login } from "./pages/Login"
+import { CekPembayaran } from "./pages/CekPembayaran"
+import { RegistrasiPerangkatDesa } from "./pages/pengelolaan-pbb/RegistrasiPerangkatDesa"
+import { DashboardAdminPBB } from "./pages/pengelolaan-pbb/DashboardAdminPBB"
+import { DashboardKepalaDusun } from "./pages/pengelolaan-pbb/DashboardKepalaDusun"
+import { DashboardKetuaRT } from "./pages/pengelolaan-pbb/DashboardKetuaRT"
+import { Settings } from "./pages/Settings"
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cek-pembayaran" element={<CekPembayaran />} />
+
+            <Route path="/pengelolaan-pbb/registrasi" element={<RegistrasiPerangkatDesa />} />
+            <Route
+              path="/pengelolaan-pbb/dashboard-admin"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <DashboardAdminPBB />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pengelolaan-pbb/dashboard-kepala-dusun"
+              element={
+                <ProtectedRoute allowedRoles={["kepala_dusun"]}>
+                  <DashboardKepalaDusun />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pengelolaan-pbb/dashboard-ketua-rt"
+              element={
+                <ProtectedRoute allowedRoles={["ketua_rt"]}>
+                  <DashboardKetuaRT />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute allowedRoles={["admin", "kepala_dusun", "ketua_rt"]}>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  )
+}
+
+export default App
