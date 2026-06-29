@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { useAuth } from "../../contexts/AuthContext"
-import { SuratPBB } from "../../types"
+import { SuratPBB, PerangkatDesa } from "../../types"
 import { StatistikCards } from "../../components/pengelolaan-pbb/StatistikCards"
 import { FormTambahSuratPBB } from "../../components/pengelolaan-pbb/FormTambahSuratPBB"
 import { TabelSuratPBB } from "../../components/pengelolaan-pbb/TabelSuratPBB"
@@ -21,14 +21,6 @@ interface DusunStatistik {
   total_surat_belum_bayar: number
   persentase_pembayaran: number
   surat_pbb: SuratPBB[]
-}
-
-interface PerangkatDesa {
-  id: string
-  nama_lengkap: string
-  jabatan: string
-  nama_dusun?: string
-  jumlahSurat?: number
 }
 
 interface DusunInfo {

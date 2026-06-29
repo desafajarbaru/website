@@ -1,12 +1,5 @@
 import { useState } from "react"
-
-interface PerangkatDesa {
-  id: string
-  nama_lengkap: string
-  jabatan: string
-  nama_dusun?: string
-  jumlahSurat?: number
-}
+import { PerangkatDesa } from "../../types"
 
 interface DaftarKetuaRTProps {
   ketuaRT: PerangkatDesa[]

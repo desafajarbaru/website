@@ -70,3 +70,12 @@ export interface DusunStatistik {
   total_surat_tidak_diketahui: number
   persentase_pembayaran: number
 }
+
+export interface PerangkatDesa {
+  id: string
+  nama_lengkap: string
+  jabatan: string
+  id_dusun?: number
+  nama_dusun?: string
+  jumlahSurat?: number
+}
